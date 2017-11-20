@@ -1,39 +1,36 @@
 <template>
   <div id="app">
-    <Userbar></Userbar>
-    <Navbar></Navbar>
-    <transition :name="transitionName">
-      <router-view class="child-view"></router-view>
-    </transition>
-    <Footinfo></Footinfo>
+    <HeadNav></HeadNav>
+    <Home></Home>
+    <StoreFoot></StoreFoot>
   </div>
 </template>
 
 <script>
-import Userbar from './Userbar'
-import Navbar from './Navbar'
-import Footinfo from './Footer'
+  import HeadNav from './common/HeadNav.vue'
+  import Home from './home/Home.vue'
+  import StoreFoot from './common/StoreFoot.vue'
 
-export default {
-  data () {
-    return {
-      // transitionName: 'slide-left'
-      transitionName: 'fade'
-    }
-  },
-  watch: {
-    '$route' (to, from) {
-      if (this.transitionName !== 'fade') {
-        const toDepth = to.path.split('/').length
-        const fromDepth = from.path.split('/').length
-        this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
+  export default {
+    data () {
+      return {
+        // transitionName: 'slide-left'
+        transitionName: 'fade'
       }
-    }
-  },
-  components: { Userbar, Navbar, Footinfo }
-}
+    },
+    watch: {
+      '$route' (to, from) {
+        if (this.transitionName !== 'fade') {
+          const toDepth = to.path.split('/').length
+          const fromDepth = from.path.split('/').length
+          this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
+        }
+      }
+    },
+    components: {HeadNav, StoreFoot, Home}
+  }
 </script>
 
 <style lang="scss">
-@import "../scss/docs";
+/*@import "../scss/docs";*/
 </style>
